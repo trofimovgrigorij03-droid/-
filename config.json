@@ -1,0 +1,78 @@
+{
+  "screen": {
+    "left": 0,
+    "top": 0,
+    "width": 1920,
+    "height": 1080
+  },
+  "marker_hsv_low": [
+    0,
+    120,
+    80
+  ],
+  "marker_hsv_high": [
+    10,
+    255,
+    255
+  ],
+  "marker_hsv_low2": [
+    170,
+    120,
+    80
+  ],
+  "marker_hsv_high2": [
+    180,
+    255,
+    255
+  ],
+  "marker_min_area": 150,
+  "close_area": 3000,
+  "horizontal_deadzone": 40,
+  "steer_gain": 0.003,
+  "approach_key": "w",
+  "sprint_key": "shift",
+  "left_key": "a",
+  "right_key": "d",
+  "interact_key": "e",
+  "minigame": {
+    "enabled": true,
+    "roi": [
+      580,
+      340,
+      760,
+      280
+    ],
+    "green_low": [
+      35,
+      60,
+      60
+    ],
+    "green_high": [
+      90,
+      255,
+      255
+    ],
+    "white_low": [
+      0,
+      0,
+      200
+    ],
+    "white_high": [
+      180,
+      40,
+      255
+    ],
+    "confirm_frames": 2,
+    "action_key": "e",
+    "timeout_seconds": 18
+  },
+  "pay_per_box": 11.0,
+  "pickup_anim_wait": 2.5,
+  "delivery_anim_wait": 1.8,
+  "interaction_cooldown": 1.8,
+  "max_run_minutes": 120,
+  "hotkey_start": "f6",
+  "hotkey_stop": "f7",
+  "csv_log": true,
+  "debug_preview": false
+}
