@@ -1,0 +1,49 @@
+name: Build Windows EXE
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, master ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          architecture: 'x64'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Check Python syntax
+        run: python -m py_compile port_bot.py
+
+      - name: Build EXE
+        run: python -m PyInstaller --noconfirm --clean --onefile --windowed --name PORT_BOT_CHILIAD port_bot.py
+
+      - name: Assemble portable package
+        shell: pwsh
+        run: |
+          Copy-Item config.json dist/config.json
+          Copy-Item README_RU.txt dist/README_RU.txt
+          Compress-Archive -Path dist/PORT_BOT_CHILIAD.exe,dist/config.json,dist/README_RU.txt -DestinationPath PORT_BOT_CHILIAD-Windows-x64.zip -Force
+
+      - name: Upload downloadable ZIP artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: PORT_BOT_CHILIAD-Windows-x64
+          path: PORT_BOT_CHILIAD-Windows-x64.zip
+          if-no-files-found: error
+          retention-days: 30
